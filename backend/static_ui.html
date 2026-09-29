@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STANDMAP — Standards Mapping & Applicability Platform (SIH26108)</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --glass-bg-canvas: #090a0f;
+      --glass-bg-shell: rgba(14, 16, 24, 0.70);
+      --glass-bg-card: rgba(18, 22, 34, 0.72);
+      --glass-bg-card-hover: rgba(255, 255, 255, 0.12);
+      --glass-bg-input: rgba(0, 0, 0, 0.60);
+
+      --glass-blur-card: 40px;
+      --glass-blur-dock: 35px;
+
+      --glass-border: rgba(255, 255, 255, 0.20);
+      --glass-border-hover: rgba(255, 255, 255, 0.40);
+      --glass-border-active: rgba(255, 255, 255, 0.60);
+
+      --glass-shadow-card: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 2px 0 rgba(0, 0, 0, 0.40),
+        0 24px 60px rgba(0, 0, 0, 0.60);
+
+      --glass-text-primary: #ffffff;
+      --glass-text-secondary: rgba(255, 255, 255, 0.90);
+      --glass-text-muted: rgba(255, 255, 255, 0.65);
+
+      --glass-radius-shell: 24px;
+      --glass-radius-inner: 12px;
+      --glass-radius-pill: 9999px;
+
+      --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+      --transition-fast: 0.16s var(--ease-spring);
+      --transition-smooth: 0.24s var(--ease-spring);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+
+    ::-webkit-scrollbar {
+      display: none !important;
+      width: 0px !important;
+      height: 0px !important;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: url('/bg_noir.jpg') center/cover no-repeat fixed #08090d;
+      color: var(--glass-text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .bg-tint-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 12, 18, 0.30);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .glass-noir-panel {
+      background: var(--glass-bg-card);
+      backdrop-filter: blur(var(--glass-blur-card)) saturate(150%);
+      -webkit-backdrop-filter: blur(var(--glass-blur-card)) saturate(150%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow-card);
+      border-radius: var(--glass-radius-shell);
+      transition: 
+        background var(--transition-smooth),
+        border-color var(--transition-smooth),
+        box-shadow var(--transition-smooth);
+    }
+
+    .glass-noir-panel:hover {
+      background: rgba(22, 26, 38, 0.80);
+      border-color: var(--glass-border-hover);
+      box-shadow: 
+        inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.45),
+        0 28px 70px rgba(0, 0, 0, 0.65);
+    }
+
+    .glass-noir-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: var(--glass-radius-inner);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--glass-text-primary);
+      cursor: pointer;
+      transform: translateZ(0);
+      will-change: transform, background, border-color;
+      transition: 
+        transform 0.18s var(--ease-spring),
+        background 0.18s var(--ease-spring),
+        border-color 0.18s var(--ease-spring),
+        box-shadow 0.18s var(--ease-spring);
+    }
+
+    .glass-noir-row:hover {
+      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.40);
+    }
+
+    .glass-noir-dock {
+      background: rgba(14, 18, 28, 0.65);
+      backdrop-filter: blur(var(--glass-blur-dock)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--glass-blur-dock)) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: var(--glass-radius-pill);
+      box-shadow: 
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+        0 16px 45px rgba(0, 0, 0, 0.60);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 10px;
+    }
+
+    .glass-noir-dock-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--glass-text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 
+        transform var(--transition-fast),
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    .glass-noir-dock-btn:hover {
+      transform: scale(1.1);
+      background: rgba(255, 255, 255, 0.20);
+      border-color: rgba(255, 255, 255, 0.40);
+      color: #ffffff;
+    }
+
+    .glass-noir-dock-btn.active {
+      background: #ffffff;
+      border-color: #ffffff;
+      color: #07080c;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.50);
+      transform: scale(1.06);
+    }
+
+    /* Stepper Badges - High Visibility Glass */
+    .step-active {
+      border-color: rgba(255, 255, 255, 0.60) !important;
+      background: rgba(255, 255, 255, 0.25) !important;
+      color: #ffffff !important;
+      box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.45), 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+    }
+    .step-active .step-num {
+      color: #ffffff !important;
+    }
+    .step-active .step-lbl {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+
+    .step-done {
+      border-color: rgba(52, 211, 153, 0.50) !important;
+      background: rgba(16, 185, 129, 0.20) !important;
+      color: #34d399 !important;
+      box-shadow: inset 0 1px 0 0 rgba(52, 211, 153, 0.30) !important;
+    }
+    .step-done .step-num {
+      color: #34d399 !important;
+    }
+    .step-done .step-lbl {
+      color: #a7f3d0 !important;
+    }
+
+    .step-idle {
+      border-color: rgba(255, 255, 255, 0.18) !important;
+      background: rgba(14, 18, 28, 0.55) !important;
+      color: rgba(255, 255, 255, 0.75) !important;
+      backdrop-filter: blur(15px);
+    }
+    .step-idle .step-num {
+      color: rgba(255, 255, 255, 0.55) !important;
+    }
+    .step-idle .step-lbl {
+      color: rgba(255, 255, 255, 0.85) !important;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid #ffffff;
+      color: #07080c;
+      padding: 10px 22px;
+      border-radius: var(--glass-radius-inner);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: transform var(--transition-fast),
+                  background var(--transition-fast),
+                  box-shadow var(--transition-fast);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .btn-primary:hover {
+      background: rgba(255, 255, 255, 0.90);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 25px rgba(255, 255, 255, 0.30);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.96);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: rgba(14, 18, 28, 0.60);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: var(--glass-text-primary);
+      padding: 10px 20px;
+      border-radius: var(--glass-radius-inner);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.88rem;
+      backdrop-filter: blur(15px);
+      transition: background var(--transition-fast),
+                  border-color var(--transition-fast),
+                  transform var(--transition-fast);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.40);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.96);
+    }
+
+    .glass-noir-input {
+      color-scheme: dark;
+      width: 100%;
+      background: var(--glass-bg-input);
+      border: 1px solid var(--glass-border);
+      color: var(--glass-text-primary);
+      padding: 10px 16px;
+      border-radius: var(--glass-radius-inner);
+      outline: none;
+      font-size: 0.88rem;
+      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+      transition: 
+        border-color 0.16s var(--ease-spring),
+        background 0.16s var(--ease-spring),
+        box-shadow 0.16s var(--ease-spring);
+    }
+
+    .glass-noir-input:focus {
+      border-color: var(--glass-border-active);
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.4),
+        0 0 0 1px var(--glass-border-active);
+    }
+
+    select option {
+      background-color: #0e111a;
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-between relative selection:bg-white selection:text-black">
+
+  <div class="bg-tint-overlay"></div>
+
+  <div class="relative z-10 flex min-h-screen">
+    
+    <!-- Left Sidebar: Top Logo Circle + Center Capsule Dock -->
+    <aside class="hidden md:flex flex-col justify-between items-center py-6 px-4 shrink-0 sticky top-0 h-screen">
+      <!-- 1. Top Logo Button -->
+      <button onclick="showInspectionView()" class="w-11 h-11 rounded-full border border-white/30 bg-black/60 p-2 flex items-center justify-center shadow-xl shadow-black/80 backdrop-blur-xl hover:scale-105 transition cursor-pointer" title="STANDMAP Home">
+        <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+      </button>
+
+      <!-- 2. Center Nav Capsule Dock -->
+      <nav class="glass-noir-dock my-auto">
+        <button id="dock-btn-1" onclick="showInspectionView(); goToStep(1)" class="glass-noir-dock-btn active" title="Step 1: Tender Ingestion">
+          <i data-lucide="file-text" class="w-4 h-4"></i>
+        </button>
+        <button id="dock-btn-2" onclick="showInspectionView(); goToStep(2)" class="glass-noir-dock-btn" title="Step 2: Extracted Requirements">
+          <i data-lucide="list-checks" class="w-4 h-4"></i>
+        </button>
+        <button id="dock-btn-3" onclick="showInspectionView(); goToStep(3)" class="glass-noir-dock-btn" title="Step 3: Standards Recommendations">
+          <i data-lucide="book-open" class="w-4 h-4"></i>
+        </button>
+        <button id="dock-btn-4" onclick="showInspectionView(); goToStep(4)" class="glass-noir-dock-btn" title="Step 4: Officer Review & Ambiguity">
+          <i data-lucide="scale" class="w-4 h-4"></i>
+        </button>
+        <button id="dock-btn-5" onclick="showInspectionView(); goToStep(5)" class="glass-noir-dock-btn" title="Step 5: Procurement Report">
+          <i data-lucide="file-check-2" class="w-4 h-4"></i>
+        </button>
+        <button id="dock-btn-about" onclick="showAboutView()" class="glass-noir-dock-btn" title="About STANDMAP & SIH Mission">
+          <i data-lucide="info" class="w-4 h-4"></i>
+        </button>
+      </nav>
+
+      <!-- Invisible placeholder to balance flex justify-between -->
+      <div class="w-11 h-11 pointer-events-none"></div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col justify-start p-4 sm:p-6 max-w-5xl w-full mx-auto">
+      
+      <!-- Clean Top Header -->
+      <header class="flex items-center justify-between pb-4 border-b border-white/20">
+        <div class="flex items-center gap-3">
+          <button onclick="showInspectionView()" class="flex items-center gap-2.5 group cursor-pointer text-left">
+            <h1 class="text-2xl font-black text-white tracking-tight font-mono drop-shadow-md">STANDMAP</h1>
+            <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded-full bg-white/10 border border-white/20 text-neutral-300">
+              SIH26108
+            </span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button onclick="showInspectionView()" id="nav-tab-inspect" class="px-4 py-1.5 rounded-xl text-xs font-bold border border-white/30 bg-white/20 text-white shadow-md transition">
+            Analysis
+          </button>
+          <button onclick="showAboutView()" id="nav-tab-about" class="px-4 py-1.5 rounded-xl text-xs font-semibold border border-white/15 bg-black/40 text-neutral-300 hover:text-white transition">
+            About SIH26108 Mission
+          </button>
+        </div>
+      </header>
+
+      <!-- ================= INSPECTION VIEW ================= -->
+      <div id="view-inspection" class="space-y-6 my-6">
+        
+        <!-- Progress Stepper: High Visibility -->
+        <div class="grid grid-cols-5 gap-2.5 text-center text-xs">
+          <div id="badge-step-1" class="py-3 px-1 rounded-2xl border step-active transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer" onclick="goToStep(1)">
+            <span class="step-num text-[10px] uppercase font-mono tracking-widest font-black">01</span>
+            <span class="step-lbl">Ingest</span>
+          </div>
+          <div id="badge-step-2" class="py-3 px-1 rounded-2xl border step-idle transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer" onclick="goToStep(2)">
+            <span class="step-num text-[10px] uppercase font-mono tracking-widest font-black">02</span>
+            <span class="step-lbl">Requirements</span>
+          </div>
+          <div id="badge-step-3" class="py-3 px-1 rounded-2xl border step-idle transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer" onclick="goToStep(3)">
+            <span class="step-num text-[10px] uppercase font-mono tracking-widest font-black">03</span>
+            <span class="step-lbl">Standards</span>
+          </div>
+          <div id="badge-step-4" class="py-3 px-1 rounded-2xl border step-idle transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer" onclick="goToStep(4)">
+            <span class="step-num text-[10px] uppercase font-mono tracking-widest font-black">04</span>
+            <span class="step-lbl">Review</span>
+          </div>
+          <div id="badge-step-5" class="py-3 px-1 rounded-2xl border step-idle transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer" onclick="goToStep(5)">
+            <span class="step-num text-[10px] uppercase font-mono tracking-widest font-black">05</span>
+            <span class="step-lbl">Report</span>
+          </div>
+        </div>
+
+        <!-- ================= STEP 1: INGESTION & SETUP ================= -->
+        <div id="card-step-1" class="glass-noir-panel p-6 sm:p-8 space-y-6">
+          <div class="text-center space-y-1">
+            <h2 class="text-xl font-bold text-white tracking-tight">Tender Specification Ingestion</h2>
+            <p class="text-xs text-neutral-300 font-medium">Upload PDF, DOCX, TXT or load a curated public tender scenario</p>
+          </div>
+
+          <!-- Quick 1-Click Demo Presets -->
+          <div class="space-y-2">
+            <label class="text-xs font-semibold text-neutral-200 block flex items-center justify-between">
+              <span>Curated Demo Tenders (1-Click Verification):</span>
+              <span class="text-[10px] font-mono text-neutral-400">SIH Validated Scenarios</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <button onclick="loadDemoPreset('DEMO-TENDER-01')" class="glass-noir-row justify-between p-3.5 text-xs text-left group">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-blue-400">DEMO-01</span>
+                    <span class="font-bold text-white">5 HP Monoset Pump</span>
+                  </div>
+                  <span class="text-[11px] text-neutral-300 block mt-0.5">IS 9079 (Monoset) vs IS 8472 Subtype check</span>
+                </div>
+                <i data-lucide="sparkles" class="w-4 h-4 text-neutral-300 group-hover:text-white transition"></i>
+              </button>
+
+              <button onclick="loadDemoPreset('DEMO-TENDER-02')" class="glass-noir-row justify-between p-3.5 text-xs text-left group">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-amber-400">DEMO-02</span>
+                    <span class="font-bold text-white">1.1 kV Underground Cable</span>
+                  </div>
+                  <span class="text-[11px] text-neutral-300 block mt-0.5">Ambiguous Polymer: PVC vs XLPE → Review</span>
+                </div>
+                <i data-lucide="help-circle" class="w-4 h-4 text-amber-300 group-hover:text-white transition"></i>
+              </button>
+
+              <button onclick="loadDemoPreset('DEMO-TENDER-03')" class="glass-noir-row justify-between p-3.5 text-xs text-left group">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-rose-400">DEMO-03</span>
+                    <span class="font-bold text-white">250 kVA Transformer</span>
+                  </div>
+                  <span class="text-[11px] text-neutral-300 block mt-0.5">Outdated IS 1180:1989 → Version Alert</span>
+                </div>
+                <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-300 group-hover:text-white transition"></i>
+              </button>
+
+              <button onclick="loadDemoPreset('DEMO-TENDER-04')" class="glass-noir-row justify-between p-3.5 text-xs text-left group">
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="font-mono font-bold text-emerald-400">DEMO-04</span>
+                    <span class="font-bold text-white">Solar PV Water Pumping</span>
+                  </div>
+                  <span class="text-[11px] text-neutral-300 block mt-0.5">IS 14286 Modules + IoT Telemetry Gap</span>
+                </div>
+                <i data-lucide="layers" class="w-4 h-4 text-emerald-300 group-hover:text-white transition"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Fields Form -->
+          <div class="space-y-4 pt-3 border-t border-white/10">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Tender Title / Reference</label>
+                <input type="text" id="input-title" value="Procurement of 5.0 HP Agricultural Monoset Pump Sets" class="glass-noir-input" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Procuring Organization</label>
+                <input type="text" id="input-org" value="State Water & Sanitation Mission" class="glass-noir-input" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Category Domain</label>
+                <select id="input-category" class="glass-noir-input">
+                  <option value="PUMPS_AND_MOTORS">Pumps & Electric Motors</option>
+                  <option value="ELECTRICAL_CABLES">Power & Control Cables</option>
+                  <option value="TRANSFORMERS">Distribution Transformers</option>
+                  <option value="SOLAR_SYSTEMS">Solar PV Systems & Inverters</option>
+                  <option value="PIPES_AND_CIVIL">Pipes & Civil Engineering</option>
+                  <option value="SAFETY_EQUIPMENT">Industrial Safety Equipment</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Document Upload (Optional PDF/DOCX/TXT)</label>
+                <input type="file" id="input-file" accept=".pdf,.docx,.txt" class="glass-noir-input text-xs" />
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs font-semibold text-neutral-300 block mb-1">Technical Specification Clauses</label>
+              <textarea id="input-raw-text" rows="8" class="glass-noir-input font-mono text-xs leading-relaxed" placeholder="Paste technical specification text or BoQ line items here..."></textarea>
+            </div>
+
+            <div class="flex justify-end pt-2">
+              <button id="btn-run-pipeline" onclick="executeStartAnalysis()" class="btn-primary">
+                Run STANDMAP Pipeline <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= STEP 2: REQUIREMENTS ================= -->
+        <div id="card-step-2" class="hidden glass-noir-panel p-6 sm:p-8 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/15 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-white tracking-tight">Source-Grounded Requirements</h2>
+              <p class="text-xs text-neutral-300 font-medium">Atomic clauses extracted with page and section provenance</p>
+            </div>
+            <span id="req-count-badge" class="font-mono text-xs px-3 py-1 rounded-full bg-white/10 border border-white/20 text-neutral-200">
+              0 Requirements
+            </span>
+          </div>
+
+          <div id="requirements-container" class="space-y-3 max-h-[500px] overflow-y-auto pr-1"></div>
+
+          <div class="flex justify-center gap-3 pt-4 border-t border-white/15">
+            <button onclick="goToStep(1)" class="btn-secondary">
+              ← Back to Ingest
+            </button>
+            <button onclick="executeStep3Recommendations()" class="btn-primary">
+              Map Indian Standards <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= STEP 3: STANDARDS RECOMMENDATIONS ================= -->
+        <div id="card-step-3" class="hidden glass-noir-panel p-6 sm:p-8 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/15 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-white tracking-tight">Indian Standards Recommendations</h2>
+              <p class="text-xs text-neutral-300 font-medium">Deterministic applicability rules, QCO statutory status & normative relations</p>
+            </div>
+            <span id="recs-count-badge" class="font-mono text-xs px-3 py-1 rounded-full bg-white/10 border border-white/20 text-neutral-200">
+              0 Standards
+            </span>
+          </div>
+
+          <div id="standards-container" class="space-y-4 max-h-[560px] overflow-y-auto pr-1"></div>
+
+          <div class="flex justify-center gap-3 pt-4 border-t border-white/15">
+            <button onclick="goToStep(2)" class="btn-secondary">
+              ← Back to Requirements
+            </button>
+            <button onclick="goToStep(4)" class="btn-primary">
+              Officer Review Queue <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= STEP 4: REVIEW & OVERRIDE ================= -->
+        <div id="card-step-4" class="hidden glass-noir-panel p-6 sm:p-8 space-y-6">
+          <div class="flex items-center justify-between border-b border-white/15 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-white tracking-tight">Officer Review & Ambiguity Queue</h2>
+              <p class="text-xs text-neutral-300 font-medium">Human-in-the-loop sign-off for ambiguous specifications and superseded versions</p>
+            </div>
+          </div>
+
+          <!-- Version Alerts Container -->
+          <div id="version-alerts-box" class="space-y-2"></div>
+
+          <!-- Pending Ambiguous Items Container -->
+          <div id="review-pending-box" class="space-y-3"></div>
+
+          <!-- Officer Decision Form -->
+          <div class="bg-black/50 p-5 rounded-2xl border border-white/15 space-y-3">
+            <h3 class="text-sm font-bold text-white flex items-center gap-2">
+              <i data-lucide="user-check" class="w-4 h-4 text-amber-400"></i>
+              Officer Sign-Off Panel
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Decision</label>
+                <select id="review-decision" class="glass-noir-input">
+                  <option value="ACCEPT">ACCEPT (Confirm Standard)</option>
+                  <option value="OVERRIDE">OVERRIDE (Specify Custom IS)</option>
+                  <option value="REJECT">REJECT (Exclude from Tender)</option>
+                </select>
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Officer Badge ID</label>
+                <input type="text" id="review-officer-id" value="PROCUREMENT-OFFICER-01" class="glass-noir-input font-mono" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-neutral-300 block mb-1">Technical Audit Notes</label>
+                <input type="text" id="review-notes" value="Selected by reviewing officer after technical review." class="glass-noir-input" />
+              </div>
+            </div>
+            <div class="flex justify-end pt-2">
+              <button onclick="submitOfficerDecision()" class="btn-primary">
+                Confirm Audit Decision <i data-lucide="check" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Past Decision Log -->
+          <div id="review-log-box" class="space-y-2"></div>
+
+          <div class="flex justify-center gap-3 pt-4 border-t border-white/15">
+            <button onclick="goToStep(3)" class="btn-secondary">
+              ← Back to Standards
+            </button>
+            <button onclick="goToStep(5)" class="btn-primary">
+              Generate Report <i data-lucide="file-text" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= STEP 5: STANDARDS REPORT ================= -->
+        <div id="card-step-5" class="hidden glass-noir-panel p-6 space-y-6">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-white/15 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-white tracking-tight">Standards-Backed Technical Procurement Report</h2>
+              <p class="text-xs text-neutral-300 font-medium">Audited decision-support report and draft GeM/CPPP compliance clause</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <button onclick="downloadPdfReport()" class="btn-primary">
+                <i data-lucide="download" class="w-4 h-4"></i> Download PDF
+              </button>
+              <button onclick="copyDraftClause()" class="btn-secondary">
+                <i data-lucide="copy" class="w-4 h-4"></i> Copy GeM Clause
+              </button>
+              <button onclick="resetAnalysis()" class="btn-secondary">
+                <i data-lucide="plus" class="w-4 h-4"></i> New Tender
+              </button>
+            </div>
+          </div>
+
+          <!-- Copyable Clause Box -->
+          <div class="bg-black/50 p-4 rounded-2xl border border-white/15 space-y-2">
+            <div class="flex items-center justify-between text-xs font-mono text-neutral-300">
+              <span>Ready for GeM / Central Public Procurement Portal (CPPP) Bids:</span>
+              <span id="copy-clause-badge" class="text-emerald-400 font-bold hidden">Copied to Clipboard!</span>
+            </div>
+            <textarea id="report-clause-text" rows="5" readonly class="glass-noir-input font-mono text-xs leading-relaxed resize-none"></textarea>
+          </div>
+
+          <!-- Live HTML Report Frame -->
+          <div class="bg-white rounded-2xl shadow-2xl overflow-hidden min-h-[600px] border border-white/20">
+            <iframe id="report-frame" src="about:blank" class="w-full min-h-[650px] border-none"></iframe>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= ABOUT & SIH MISSION VIEW ================= -->
+      <div id="view-about" class="hidden space-y-6 my-6">
+        
+        <!-- Mission Header Card -->
+        <div class="glass-noir-panel p-6 sm:p-8 space-y-3">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl border border-white/30 bg-black/60 p-2 flex items-center justify-center">
+              <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+            </div>
+            <div>
+              <h2 class="text-xl font-extrabold text-white tracking-tight font-mono">STANDMAP</h2>
+              <p class="text-xs text-neutral-300 font-medium">Standards Mapping & Applicability Platform (SIH26108)</p>
+            </div>
+          </div>
+          <p class="text-xs text-neutral-200 leading-relaxed font-normal">
+            Automated intelligence platform for identifying, verifying, and mapping applicable <strong class="text-white font-bold">Indian Standards (IS)</strong> and mandatory <strong class="text-white font-bold">Quality Control Orders (QCOs)</strong> for public procurement tenders.
+          </p>
+        </div>
+
+        <!-- Problem vs Solution Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          <!-- The Problem -->
+          <div class="glass-noir-panel p-5 space-y-2.5">
+            <div class="flex items-center gap-2 text-rose-300 font-bold text-xs font-mono">
+              <i data-lucide="alert-octagon" class="w-4 h-4"></i>
+              The Problem in Public Procurement
+            </div>
+            <ul class="text-xs text-neutral-200 space-y-1.5 font-normal list-disc list-inside">
+              <li>Tenders often cite obsolete, withdrawn, or superseded IS standards (e.g. citing IS 1180:1989 instead of IS 1180:2014), causing litigation and re-tendering delays.</li>
+              <li>Procuring officers miss mandatory Quality Control Orders (QCOs) where ISI marks are compulsory by Central Government notifications.</li>
+              <li>Tender clauses specify vague parameters without identifying testing codes, safety rules, or insulation polymer classes.</li>
+            </ul>
+          </div>
+
+          <!-- The Solution -->
+          <div class="glass-noir-panel p-5 space-y-2.5">
+            <div class="flex items-center gap-2 text-emerald-300 font-bold text-xs font-mono">
+              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+              The STANDMAP Solution
+            </div>
+            <ul class="text-xs text-neutral-200 space-y-1.5 font-normal list-disc list-inside">
+              <li>Source-grounded atomic requirement extraction with exact page and section provenance.</li>
+              <li>Deterministic physical subtype matching (e.g. distinguishing Monoset IS 9079 from Regenerative IS 8472).</li>
+              <li>Normative dependency graph linking primary product standards to mandatory test codes (e.g. IS 9652) and safety rules.</li>
+              <li>Zero hallucinations: missing specifications (like PVC vs XLPE cable) force human officer review instead of guessing.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- 10-Layer Architecture Pillars -->
+        <div class="glass-noir-panel p-5 space-y-3">
+          <h3 class="text-xs font-bold text-white uppercase tracking-wider font-mono">System Architecture</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div class="p-3 rounded-xl bg-white/10 border border-white/15 space-y-0.5">
+              <span class="text-neutral-300 font-mono text-[9px] uppercase font-bold block">Layers 01–03</span>
+              <strong class="text-white block font-bold text-xs">Ingestion & Provenance</strong>
+              <span class="text-neutral-300 font-normal block text-[11px]">Multi-page PDF parsing with coordinate tracking</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white/10 border border-white/15 space-y-0.5">
+              <span class="text-neutral-300 font-mono text-[9px] uppercase font-bold block">Layers 04–06</span>
+              <strong class="text-white block font-bold text-xs">Applicability & Graph</strong>
+              <span class="text-neutral-300 font-normal block text-[11px]">Deterministic rule filters & NetworkX tree</span>
+            </div>
+            <div class="p-3 rounded-xl bg-white/10 border border-white/15 space-y-0.5">
+              <span class="text-neutral-300 font-mono text-[9px] uppercase font-bold block">Layers 07–10</span>
+              <strong class="text-white block font-bold text-xs">Governance & Report</strong>
+              <span class="text-neutral-300 font-normal block text-[11px]">Version comparator & GeM compliance report</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Back to Inspection CTA -->
+        <div class="flex justify-center pt-2">
+          <button onclick="showInspectionView()" class="btn-primary">
+            Start Procurement Analysis <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let curStep = 1;
+    let currentAnalysisId = null;
+    let analysisData = null;
+
+    function showInspectionView() {
+      document.getElementById('view-inspection').classList.remove('hidden');
+      document.getElementById('view-about').classList.add('hidden');
+      
+      document.getElementById('nav-tab-inspect').className = 'px-4 py-1.5 rounded-xl text-xs font-bold border border-white/30 bg-white/20 text-white shadow-md transition';
+      document.getElementById('nav-tab-about').className = 'px-4 py-1.5 rounded-xl text-xs font-semibold border border-white/15 bg-black/40 text-neutral-300 hover:text-white transition';
+      
+      document.getElementById('dock-btn-about').className = 'glass-noir-dock-btn';
+      goToStep(curStep);
+    }
+
+    function showAboutView() {
+      document.getElementById('view-inspection').classList.add('hidden');
+      document.getElementById('view-about').classList.remove('hidden');
+      
+      document.getElementById('nav-tab-inspect').className = 'px-4 py-1.5 rounded-xl text-xs font-semibold border border-white/15 bg-black/40 text-neutral-300 hover:text-white transition';
+      document.getElementById('nav-tab-about').className = 'px-4 py-1.5 rounded-xl text-xs font-bold border border-white/30 bg-white/20 text-white shadow-md transition';
+      
+      for (let i = 1; i <= 5; i++) {
+        const btn = document.getElementById(`dock-btn-${i}`);
+        if (btn) btn.className = 'glass-noir-dock-btn';
+      }
+      document.getElementById('dock-btn-about').className = 'glass-noir-dock-btn active';
+    }
+
+    function goToStep(step) {
+      curStep = step;
+      for (let i = 1; i <= 5; i++) {
+        const card = document.getElementById(`card-step-${i}`);
+        const badge = document.getElementById(`badge-step-${i}`);
+        const dockBtn = document.getElementById(`dock-btn-${i}`);
+        
+        if (card) {
+          if (i === step) card.classList.remove('hidden');
+          else card.classList.add('hidden');
+        }
+        
+        if (badge) {
+          if (i === step) badge.className = 'py-3 px-1 rounded-2xl border step-active transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer';
+          else if (i < step) badge.className = 'py-3 px-1 rounded-2xl border step-done transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer';
+          else badge.className = 'py-3 px-1 rounded-2xl border step-idle transition-all flex flex-col items-center gap-0.5 font-bold cursor-pointer';
+        }
+
+        if (dockBtn) {
+          if (i === step) dockBtn.className = 'glass-noir-dock-btn active';
+          else dockBtn.className = 'glass-noir-dock-btn';
+        }
+      }
+      lucide.createIcons();
+    }
+
+    async function loadDemoPreset(presetId) {
+      try {
+        const res = await fetch('/api/sample-tenders');
+        if (res.ok) {
+          const list = await res.json();
+          const found = list.find(s => s.id === presetId);
+          if (found) {
+            document.getElementById('input-title').value = found.title;
+            document.getElementById('input-org').value = found.organization;
+            document.getElementById('input-category').value = found.category;
+            document.getElementById('input-raw-text').value = found.full_text;
+            document.getElementById('input-file').value = '';
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load demo preset:', err);
+      }
+    }
+
+    async function executeStartAnalysis() {
+      const title = document.getElementById('input-title').value;
+      const org = document.getElementById('input-org').value;
+      const cat = document.getElementById('input-category').value;
+      const rawText = document.getElementById('input-raw-text').value;
+      const fileInput = document.getElementById('input-file');
+
+      if (!rawText && (!fileInput.files || fileInput.files.length === 0)) {
+        alert('Please paste tender specification text or select a file.');
+        return;
+      }
+
+      const btn = document.getElementById('btn-run-pipeline');
+      btn.innerHTML = `<i data-lucide="refresh-cw" class="w-4 h-4 animate-spin"></i> Executing Pipeline...`;
+      lucide.createIcons();
+
+      try {
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('organization', org);
+        formData.append('category', cat);
+        formData.append('document_type', 'Technical Specification');
+        formData.append('raw_text', rawText);
+
+        const res = await fetch('/api/analyses', {
+          method: 'POST',
+          body: formData
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          currentAnalysisId = data.analysis_id || data.id;
+
+          // If a file was selected, upload it
+          if (fileInput.files && fileInput.files.length > 0) {
+            const docForm = new FormData();
+            docForm.append('file', fileInput.files[0]);
+            await fetch(`/api/analyses/${currentAnalysisId}/document`, {
+              method: 'POST',
+              body: docForm
+            });
+          }
+
+          // Process analysis
+          await fetch(`/api/analyses/${currentAnalysisId}/process`, { method: 'POST' });
+
+          // Fetch full data & render Step 2
+          await refreshAnalysisData();
+          goToStep(2);
+        } else {
+          alert('Failed to initialize analysis session.');
+        }
+      } catch (e) {
+        console.error(e);
+        alert('Error communicating with backend.');
+      } finally {
+        btn.innerHTML = `Run STANDMAP Pipeline <i data-lucide="arrow-right" class="w-4 h-4"></i>`;
+        lucide.createIcons();
+      }
+    }
+
+    async function refreshAnalysisData() {
+      if (!currentAnalysisId) return;
+      try {
+        const res = await fetch(`/api/analyses/${currentAnalysisId}`);
+        if (res.ok) {
+          analysisData = await res.json();
+          renderStep2Requirements();
+          renderStep3Standards();
+          renderStep4Review();
+          renderStep5Report();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderStep2Requirements() {
+      const reqs = analysisData.requirements || [];
+      document.getElementById('req-count-badge').innerText = `${reqs.length} Requirements`;
+      const container = document.getElementById('requirements-container');
+      container.innerHTML = '';
+
+      if (reqs.length === 0) {
+        container.innerHTML = `<div class="p-6 text-center text-neutral-400 text-xs">No requirements extracted.</div>`;
+        return;
+      }
+
+      reqs.forEach((r, idx) => {
+        let badgeCol = 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30';
+        if (r.coverage_status === 'PARTIAL') badgeCol = 'bg-amber-500/20 text-amber-300 border-amber-500/30';
+        if (r.coverage_status === 'REVIEW') badgeCol = 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30';
+        if (r.coverage_status === 'NO_MATCH') badgeCol = 'bg-rose-500/20 text-rose-300 border-rose-500/30';
+
+        const row = document.createElement('div');
+        row.className = 'glass-noir-row flex-col items-start gap-2 p-4 text-xs';
+        row.innerHTML = `
+          <div class="flex items-center justify-between w-full">
+            <div class="flex items-center gap-2">
+              <span class="font-mono font-bold text-white bg-white/10 px-2 py-0.5 rounded border border-white/15">${r.id}</span>
+              <span class="font-mono text-[10px] text-blue-300 uppercase">${r.category}</span>
+              <span class="text-[10px] font-mono text-neutral-400">Page ${r.source_page} • ${r.source_section}</span>
+            </div>
+            <span class="px-2 py-0.5 font-mono text-[10px] font-bold rounded border ${badgeCol}">${r.coverage_status}</span>
+          </div>
+          <p class="text-neutral-100 font-medium leading-relaxed">${r.text}</p>
+          <div class="w-full bg-black/40 p-2 rounded-lg border border-white/10 text-[11px] font-mono text-neutral-300">
+            <span class="text-neutral-500">Source Excerpt:</span> "${r.source_excerpt || r.text}"
+          </div>
+        `;
+        container.appendChild(row);
+      });
+      lucide.createIcons();
+    }
+
+    function executeStep3Recommendations() {
+      goToStep(3);
+    }
+
+    function renderStep3Standards() {
+      const recs = analysisData.recommendations || [];
+      document.getElementById('recs-count-badge').innerText = `${recs.length} Candidate Standards`;
+      const container = document.getElementById('standards-container');
+      container.innerHTML = '';
+
+      if (recs.length === 0) {
+        container.innerHTML = `<div class="p-6 text-center text-neutral-400 text-xs">No standards recommendations generated.</div>`;
+        return;
+      }
+
+      recs.forEach(rec => {
+        let statusBadge = `<span class="px-2.5 py-0.5 font-mono text-[10px] font-bold rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">APPLICABLE</span>`;
+        if (rec.applicability_status === 'REVIEW_REQUIRED') {
+          statusBadge = `<span class="px-2.5 py-0.5 font-mono text-[10px] font-bold rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">REVIEW REQUIRED</span>`;
+        } else if (rec.applicability_status === 'POSSIBLY_APPLICABLE') {
+          statusBadge = `<span class="px-2.5 py-0.5 font-mono text-[10px] font-bold rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">POSSIBLY APPLICABLE</span>`;
+        }
+
+        const isMandatory = rec.certification_status === 'MANDATORY_QCO';
+
+        let relationshipsHtml = '';
+        if (rec.relationships && rec.relationships.length > 0) {
+          relationshipsHtml = `
+            <div class="pt-2 border-t border-white/10">
+              <span class="text-[10px] font-mono text-neutral-400 uppercase block mb-1.5">Connected Normative Standards:</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                ${rec.relationships.map(rel => `
+                  <div class="p-2 rounded bg-black/40 border border-white/10 text-[11px]">
+                    <div class="flex items-center justify-between">
+                      <span class="font-mono font-bold text-indigo-300">${rel.target_is}</span>
+                      <span class="text-[9px] font-mono uppercase text-neutral-400">${rel.relationship_type}</span>
+                    </div>
+                    <p class="text-neutral-200 mt-0.5 line-clamp-1">${rel.target_title}</p>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
+        const card = document.createElement('div');
+        card.className = 'glass-noir-panel p-5 space-y-3 text-xs';
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-base font-bold text-white">${rec.is_number}</span>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">
+                  Source-verified metadata
+                </span>
+              </div>
+              <h4 class="font-bold text-neutral-100 text-sm mt-1">${rec.standard_title}</h4>
+            </div>
+            <div>${statusBadge}</div>
+          </div>
+
+          <div class="p-3 bg-black/40 rounded-xl border border-white/10 space-y-1">
+            <span class="text-[10px] font-mono text-emerald-400 font-bold uppercase block">Applicability Proof:</span>
+            <p class="text-neutral-200 font-medium">${rec.applicability_reason}</p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 text-[11px]">
+            <div class="p-2.5 bg-black/40 rounded-xl border border-white/10">
+              <span class="text-[10px] font-mono text-neutral-400 uppercase block">Edition / Revision</span>
+              <span class="font-bold text-white">${rec.edition || 'Current'}</span>
+            </div>
+            <div class="p-2.5 bg-black/40 rounded-xl border border-white/10">
+              <span class="text-[10px] font-mono text-neutral-400 uppercase block">Legal Status</span>
+              <span class="font-bold ${isMandatory ? 'text-rose-400' : 'text-emerald-400'}">${isMandatory ? 'Mandatory under QCO' : 'Voluntary Standard'}</span>
+            </div>
+          </div>
+
+          <div class="p-2.5 bg-black/40 rounded-xl border border-white/10 text-[11px] space-y-1">
+            <span class="text-[10px] font-mono text-neutral-400 uppercase block">BIS Certification & Statutory Source:</span>
+            <p class="text-neutral-300 font-mono">${rec.certification_scheme || 'Voluntary standard under BIS Act / National Building Code'}</p>
+          </div>
+
+          ${relationshipsHtml}
+
+          <div class="pt-2 flex items-center justify-between">
+            <a href="${rec.source_url}" target="_blank" class="text-blue-400 hover:text-white flex items-center gap-1 font-mono text-[11px]">
+              View in BIS Portal <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+            <div class="flex items-center gap-2">
+              <button onclick="quickReviewAction('${rec.requirement_id}', '${rec.standard_id}', 'ACCEPT')" class="px-3 py-1 bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30 rounded-lg font-bold border border-emerald-500/30 transition text-[11px]">
+                Accept
+              </button>
+              <button onclick="goToStep(4)" class="px-3 py-1 bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 rounded-lg font-bold border border-amber-500/30 transition text-[11px]">
+                Review
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    function renderStep4Review() {
+      const versionChecks = (analysisData.version_checks || []).filter(v => v.status === 'OUTDATED');
+      const vBox = document.getElementById('version-alerts-box');
+      vBox.innerHTML = '';
+
+      if (versionChecks.length > 0) {
+        versionChecks.forEach(v => {
+          const alert = document.createElement('div');
+          alert.className = 'p-4 rounded-2xl border border-rose-500/50 bg-rose-500/10 space-y-1 text-xs';
+          alert.innerHTML = `
+            <div class="flex items-center justify-between font-bold text-rose-300">
+              <span class="flex items-center gap-1.5"><i data-lucide="alert-triangle" class="w-4 h-4"></i> Outdated Reference Alert</span>
+              <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-rose-500/20 uppercase">Superseded</span>
+            </div>
+            <p class="text-neutral-200 mt-1">${v.warning_message}</p>
+          `;
+          vBox.appendChild(alert);
+        });
+      }
+
+      // Ambiguous / Review required items
+      const recs = (analysisData.recommendations || []).filter(
+        r => r.applicability_status === 'REVIEW_REQUIRED' || r.applicability_status === 'POSSIBLY_APPLICABLE' || r.review_status === 'FLAG_FOR_REVIEW'
+      );
+      const rBox = document.getElementById('review-pending-box');
+      rBox.innerHTML = '';
+
+      if (recs.length === 0) {
+        rBox.innerHTML = `
+          <div class="p-6 text-center bg-black/40 rounded-2xl border border-white/15 space-y-1">
+            <i data-lucide="check-circle-2" class="w-6 h-6 text-emerald-400 mx-auto"></i>
+            <span class="font-bold text-white text-xs block">All Review Cases Clear</span>
+            <span class="text-[11px] text-neutral-400">No ambiguous candidate standards remaining for this tender.</span>
+          </div>
+        `;
+      } else {
+        recs.forEach(rec => {
+          const item = document.createElement('div');
+          item.className = 'p-4 rounded-2xl border border-amber-500/40 bg-amber-500/10 space-y-2 text-xs';
+          item.innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="font-mono font-bold text-amber-300 text-sm">${rec.is_number}</span>
+              <span class="px-2 py-0.5 font-mono text-[10px] font-bold rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                ${rec.applicability_status}
+              </span>
+            </div>
+            <h4 class="font-bold text-white">${rec.standard_title}</h4>
+            <div class="p-2.5 bg-black/50 rounded-xl border border-white/10 text-[11px]">
+              <span class="text-neutral-400 font-mono">Tender Clause:</span> "${rec.requirement_text}"
+            </div>
+            <p class="text-neutral-300 text-[11px]"><strong class="text-amber-300">Ambiguity Reason:</strong> ${rec.applicability_reason}</p>
+          `;
+          rBox.appendChild(item);
+        });
+      }
+
+      // Past Decision Log
+      const decisions = analysisData.review_decisions || [];
+      const logBox = document.getElementById('review-log-box');
+      logBox.innerHTML = '';
+
+      if (decisions.length > 0) {
+        logBox.innerHTML = `<h4 class="text-xs font-mono uppercase text-neutral-400 font-bold pt-2">Audited Review Decisions Log</h4>`;
+        decisions.forEach(d => {
+          const row = document.createElement('div');
+          row.className = 'p-3 rounded-xl bg-black/40 border border-white/10 text-xs flex items-center justify-between';
+          row.innerHTML = `
+            <div>
+              <span class="font-mono font-bold text-emerald-400">[${d.decision}]</span>
+              <span class="font-mono text-neutral-300 ml-2">${d.standard_id}</span>
+              <span class="text-neutral-400 text-[11px] ml-2">by ${d.officer_id}</span>
+              ${d.notes ? `<p class="text-[11px] text-neutral-400 mt-0.5 font-mono">${d.notes}</p>` : ''}
+            </div>
+            <span class="text-[10px] font-mono text-neutral-500">${(d.timestamp || '').slice(0, 16)}</span>
+          `;
+          logBox.appendChild(row);
+        });
+      }
+
+      lucide.createIcons();
+    }
+
+    async function quickReviewAction(reqId, stdId, decision) {
+      if (!currentAnalysisId) return;
+      const formData = new FormData();
+      formData.append('requirement_id', reqId);
+      formData.append('standard_id', stdId);
+      formData.append('decision', decision);
+      formData.append('notes', 'Confirmed by officer in standards view.');
+
+      await fetch(`/api/analyses/${currentAnalysisId}/review`, {
+        method: 'POST',
+        body: formData
+      });
+      await refreshAnalysisData();
+    }
+
+    async function submitOfficerDecision() {
+      if (!currentAnalysisId) return;
+      const recs = (analysisData.recommendations || []).filter(
+        r => r.applicability_status === 'REVIEW_REQUIRED' || r.applicability_status === 'POSSIBLY_APPLICABLE'
+      );
+      if (recs.length === 0) {
+        alert('No pending review cases.');
+        return;
+      }
+
+      const target = recs[0];
+      const decision = document.getElementById('review-decision').value;
+      const officerId = document.getElementById('review-officer-id').value;
+      const notes = document.getElementById('review-notes').value;
+
+      const formData = new FormData();
+      formData.append('requirement_id', target.requirement_id);
+      formData.append('standard_id', target.standard_id);
+      formData.append('officer_id', officerId);
+      formData.append('decision', decision);
+      formData.append('notes', notes);
+
+      const res = await fetch(`/api/analyses/${currentAnalysisId}/review`, {
+        method: 'POST',
+        body: formData
+      });
+
+      if (res.ok) {
+        await refreshAnalysisData();
+      }
+    }
+
+    async function renderStep5Report() {
+      if (!currentAnalysisId) return;
+      document.getElementById('report-frame').src = `/api/analyses/${currentAnalysisId}/report`;
+
+      try {
+        const res = await fetch(`/api/analyses/${currentAnalysisId}/export/clause`);
+        if (res.ok) {
+          const json = await res.json();
+          document.getElementById('report-clause-text').value = json.tender_clause || '';
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function downloadPdfReport() {
+      if (!currentAnalysisId) return;
+      window.open(`/api/analyses/${currentAnalysisId}/report/pdf`, '_blank');
+    }
+
+    function copyDraftClause() {
+      const text = document.getElementById('report-clause-text').value;
+      navigator.clipboard.writeText(text);
+      const badge = document.getElementById('copy-clause-badge');
+      badge.classList.remove('hidden');
+      setTimeout(() => badge.classList.add('hidden'), 2500);
+    }
+
+    function resetAnalysis() {
+      currentAnalysisId = null;
+      analysisData = null;
+      document.getElementById('report-frame').src = 'about:blank';
+      document.getElementById('report-clause-text').value = '';
+      goToStep(1);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadDemoPreset('DEMO-TENDER-01');
+    });
+  </script>
+</body>
+</html>

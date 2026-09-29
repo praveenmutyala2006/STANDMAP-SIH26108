@@ -1,0 +1,672 @@
+[
+  {
+    "standard_id": "STD-IS-8472",
+    "is_number": "IS 8472:2019",
+    "base_is": "IS 8472",
+    "title": "Centrifugal Regenerative Pumps for Clear, Cold Water — Specification",
+    "domain": "Mechanical Engineering / Fluid Flow Systems (MED 20)",
+    "category": "PUMPS_AND_MOTORS",
+    "scope": "Specifies construction, materials, performance ratings, and testing of centrifugal regenerative (peripheral/turbine) pumps for clear, cold water for domestic and agricultural applications.",
+    "status": "CURRENT",
+    "publication_year": 2019,
+    "edition": "Second Revision (Supersedes IS 8472:1998 First Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2021-04", "summary": "Energy efficiency test acceptance tolerances and marking updates." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Pumps Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-8472",
+    "keywords": ["regenerative pump", "centrifugal regenerative", "peripheral pump", "turbine pump", "cold water pump", "self-priming regenerative"],
+    "applicable_conditions": {
+      "product_types": ["centrifugal regenerative pump", "regenerative pump", "peripheral pump"],
+      "liquid_type": ["clear cold water"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 9652",
+        "target_title": "Test Code for Centrifugal and Axial Flow Pumps",
+        "relationship_type": "TEST_METHOD",
+        "description": "Prescribes test procedure for verifying hydraulic performance, discharge rate, and overall efficiency."
+      },
+      {
+        "target_is": "IS 996",
+        "target_title": "Single-Phase Small AC and Universal Electric Motors",
+        "relationship_type": "RELATED_PRODUCT",
+        "description": "Standard for single phase electric motor driving the monobloc pump."
+      },
+      {
+        "target_is": "IS 3043",
+        "target_title": "Code of Practice for Earthing",
+        "relationship_type": "SAFETY_STANDARD",
+        "description": "Mandatory safety standard for electrical grounding of pump installations."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-9079",
+    "is_number": "IS 9079:2018",
+    "base_is": "IS 9079",
+    "title": "Monoset Pumps for Clear, Cold Water for Agricultural and Water Supply Purposes — Specification",
+    "domain": "Mechanical Engineering / Fluid Flow Systems (MED 20)",
+    "category": "PUMPS_AND_MOTORS",
+    "scope": "Specifies requirements for monoset / monobloc centrifugal pumps directly coupled to electric motors handling clear, cold water for agricultural, irrigation, and community water supply purposes.",
+    "status": "CURRENT",
+    "publication_year": 2018,
+    "edition": "Third Revision (Supersedes IS 9079:2002 Second Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2020-08", "summary": "Inclusion of stainless steel investment cast impellers." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Pumps Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-9079",
+    "keywords": ["monoset pump", "monobloc pump", "agricultural pump", "water supply pump", "3-phase pump", "centrifugal monoset", "irrigation pump"],
+    "applicable_conditions": {
+      "product_types": ["monoset pump", "monobloc pump", "agricultural pump", "water supply pump"],
+      "liquid_type": ["clear cold water"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 9652",
+        "target_title": "Test Code for Centrifugal and Axial Flow Pumps",
+        "relationship_type": "TEST_METHOD",
+        "description": "Standardized hydraulic flow testing code."
+      },
+      {
+        "target_is": "IS 12615",
+        "target_title": "Line Operated Three Phase a.c. Motors (IE Code) Efficiency Classes",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Normative reference for minimum IE2/IE3 energy efficiency ratings of the motor drive."
+      },
+      {
+        "target_is": "IS 3043",
+        "target_title": "Code of Practice for Earthing",
+        "relationship_type": "SAFETY_STANDARD",
+        "description": "Grounding and fault current safety code."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-12615",
+    "is_number": "IS 12615:2018",
+    "base_is": "IS 12615",
+    "title": "Line Operated Three Phase a.c. Motors (IE Code) Efficiency Classes and Performance — Specification",
+    "domain": "Electrotechnical / Electrical Machines (ETD 15)",
+    "category": "PUMPS_AND_MOTORS",
+    "scope": "Specifies energy efficiency classes (IE1, IE2, IE3, IE4) and performance requirements for line operated single-speed 3-phase cage induction motors from 0.12 kW up to 1000 kW.",
+    "status": "CURRENT",
+    "publication_year": 2018,
+    "edition": "Third Revision (Supersedes IS 12615:2011 Second Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2022-03", "summary": "Mandated minimum IE3 standard for all public procurement tenders." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Electric Motors Quality Control Order, 2024)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-12615",
+    "keywords": ["induction motor", "3-phase motor", "electric motor", "IE2", "IE3", "IE4", "energy efficiency", "motor rating", "5 hp motor", "kW"],
+    "applicable_conditions": {
+      "product_types": ["electric motor", "induction motor", "3-phase motor", "cage motor"],
+      "voltage": ["415V", "400V", "440V"],
+      "frequency": ["50 Hz"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS/IEC 60034-2-1",
+        "target_title": "Standard Methods for Determining Losses and Efficiency from Tests for Rotating Electrical Machinery",
+        "relationship_type": "TEST_METHOD",
+        "description": "Official test method for measuring motor efficiency and copper/iron losses."
+      },
+      {
+        "target_is": "IS/IEC 60034-5",
+        "target_title": "Degrees of Protection Provided by Enclosure for Rotating Electrical Machines (IP Code)",
+        "relationship_type": "SAFETY_STANDARD",
+        "description": "Specifies IP55 / IP68 ingress protection standards against dust and water ingress."
+      },
+      {
+        "target_is": "IS 1231",
+        "target_title": "Dimensions of Three-Phase Foot-Mounted Induction Motors",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Standardized physical frame sizes and mounting dimensions."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-694",
+    "is_number": "IS 694:2010",
+    "base_is": "IS 694",
+    "title": "Polyvinyl Chloride Insulated Unsheathed and Sheathed Cables/Cords with Rigid and Flexible Conductor for Rated Voltages Up To and Including 1100 V — Specification",
+    "domain": "Electrotechnical / Power & Control Cables (ETD 09)",
+    "category": "ELECTRICAL_CABLES",
+    "scope": "Covers requirements for single core and multicore PVC insulated cables for domestic and industrial wiring, building services and panel connections up to 1100 V.",
+    "status": "CURRENT",
+    "publication_year": 2010,
+    "edition": "Fourth Revision (Supersedes IS 694:1990 Third Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2014-04", "summary": "Specification of flame retardant low smoke (FRLS) compounding." },
+      { "amendment_no": "Amd 2", "date": "2019-10", "summary": "Conductor resistance tolerance alignment with IEC 60228." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Electrical Wires and Cables Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-694",
+    "keywords": ["pvc cable", "copper wire", "1.1 kv", "flexible cable", "domestic wiring", "building wire", "frls", "control cable"],
+    "applicable_conditions": {
+      "product_types": ["pvc cable", "electric wire", "control cable", "building wire", "flexible cord"],
+      "voltage_rating": ["up to 1100V", "1.1 kV"],
+      "insulation": ["PVC", "FRLS PVC"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 10810",
+        "target_title": "Methods of Test for Cables (Parts 0 to 65)",
+        "relationship_type": "TEST_METHOD",
+        "description": "Standard testing protocols for tensile strength, elongation, spark test, and insulation resistance."
+      },
+      {
+        "target_is": "IS 8130",
+        "target_title": "Conductors for Insulated Electric Cables and Flexible Cords",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Standard for plain and tinned copper and aluminium conductor purity and resistance."
+      },
+      {
+        "target_is": "IS 5831",
+        "target_title": "PVC Insulation and Sheath of Electric Cables",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Polymer composition, thermal stability, and aging test criteria."
+      },
+      {
+        "target_is": "IS 732",
+        "target_title": "Code of Practice for Electrical Wiring Installations",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Installation and conduit routing rules for low voltage electrical wiring."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-7098-1",
+    "is_number": "IS 7098 (Part 1):2018",
+    "base_is": "IS 7098 (Part 1)",
+    "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables — Specification: Part 1 For Working Voltages up to and Including 1 100 V",
+    "domain": "Electrotechnical / Power & Control Cables (ETD 09)",
+    "category": "ELECTRICAL_CABLES",
+    "scope": "Covers requirements for single, two, three, three and a half, and four core XLPE insulated and PVC/thermoplastic sheathed armoured and unarmoured power cables for electricity distribution up to 1.1 kV.",
+    "status": "CURRENT",
+    "publication_year": 2018,
+    "edition": "Second Revision (Supersedes IS 7098 (Part 1):1988 First Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2021-02", "summary": "Galvanized steel strip and round wire armour dimension criteria." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Power Cables Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-7098-1",
+    "keywords": ["xlpe cable", "armoured cable", "underground cable", "1.1 kv", "power distribution", "aluminium cable", "3.5 core", "4 core"],
+    "applicable_conditions": {
+      "product_types": ["xlpe cable", "armoured power cable", "underground cable", "power distribution cable"],
+      "voltage_rating": ["1.1 kV", "up to 1100V"],
+      "insulation": ["XLPE"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 10810",
+        "target_title": "Methods of Test for Cables",
+        "relationship_type": "TEST_METHOD",
+        "description": "High voltage test, hot set test, and water absorption test methods."
+      },
+      {
+        "target_is": "IS 3975",
+        "target_title": "Low Carbon Galvanized Steel Wires, Formed Wires and Tapes for Armouring of Cables",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Mechanical strength and zinc coating quality for cable armour."
+      },
+      {
+        "target_is": "IS 1255",
+        "target_title": "Code of Practice for Installation and Maintenance of Power Cables up to and Including 33 kV Rating",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Guidelines for underground trenching, direct burial, and cable jointing."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-7098-2",
+    "is_number": "IS 7098 (Part 2):2011",
+    "base_is": "IS 7098 (Part 2)",
+    "title": "Crosslinked Polyethylene Insulated Thermoplastic Sheathed Cables — Specification: Part 2 For Working Voltages from 3.3 kV Up to and Including 33 kV",
+    "domain": "Electrotechnical / Power & Control Cables (ETD 09)",
+    "category": "ELECTRICAL_CABLES",
+    "scope": "Covers high voltage XLPE power cables for utility distribution and substation interconnections ranging from 3.3 kV to 33 kV with copper/aluminium conductors and metallic screening.",
+    "status": "CURRENT",
+    "publication_year": 2011,
+    "edition": "Second Revision (Supersedes IS 7098 (Part 2):1985 First Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2015-09", "summary": "Partial discharge testing and dielectric dissipation factor requirements." },
+      { "amendment_no": "Amd 2", "date": "2022-04", "summary": "Water tree retardant crosslinked polyethylene (XLPE) requirements." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Power Cables Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-7098-2",
+    "keywords": ["ht cable", "high voltage cable", "11 kv", "33 kv", "xlpe armoured", "utility cable", "substation cable"],
+    "applicable_conditions": {
+      "product_types": ["ht cable", "high tension cable", "11kv cable", "33kv cable", "medium voltage cable"],
+      "voltage_rating": ["3.3 kV", "6.6 kV", "11 kV", "22 kV", "33 kV"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 10810",
+        "target_title": "Methods of Test for Cables",
+        "relationship_type": "TEST_METHOD",
+        "description": "Partial discharge test and impulse voltage withstand test."
+      },
+      {
+        "target_is": "IS 1255",
+        "target_title": "Code of Practice for Installation and Maintenance of Power Cables",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "High voltage underground termination, stress cone, and jointing standards."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-1180-1",
+    "is_number": "IS 1180 (Part 1):2014",
+    "base_is": "IS 1180 (Part 1)",
+    "title": "Outdoor/Indoor Type Oil Immersed Distribution Transformers Upto and Including 2 500 kVA, 33 kV — Specification: Part 1 Mineral Oil Immersed",
+    "domain": "Electrotechnical / Transformers (ETD 16)",
+    "category": "TRANSFORMERS",
+    "scope": "Covers outdoor and indoor mineral oil immersed distribution transformers up to 2500 kVA, 33 kV class, specifying maximum permissible losses for Energy Efficiency Level 1, Level 2, and Level 3.",
+    "status": "CURRENT",
+    "publication_year": 2014,
+    "edition": "Fourth Revision (Amalgamated IS 1180 Pt 1:1989 Non-sealed and Pt 2:1989 Sealed)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2016-12", "summary": "Mandatory BEE Star Rating alignment." },
+      { "amendment_no": "Amd 2", "date": "2021-08", "summary": "Short circuit test validity duration and loss evaluation tolerances." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Distribution Transformers Quality Control Order, 2014)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-1180-1",
+    "keywords": ["transformer", "distribution transformer", "100 kva", "250 kva", "500 kva", "oil immersed", "11 kv/433v", "bee star rating", "loss level"],
+    "applicable_conditions": {
+      "product_types": ["distribution transformer", "oil immersed transformer", "step down transformer"],
+      "rating": ["16 kVA up to 2500 kVA"],
+      "voltage_class": ["11 kV", "22 kV", "33 kV"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 2026",
+        "target_title": "Power Transformers - Methods of Test (Parts 1 to 5)",
+        "relationship_type": "TEST_METHOD",
+        "description": "Temperature rise, no-load loss, load loss, and dielectric test code."
+      },
+      {
+        "target_is": "IS 335",
+        "target_title": "New Insulating Oils - Specification",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Standard for transformer mineral oil dielectric strength, moisture content, and breakdown voltage."
+      },
+      {
+        "target_is": "IS 3043",
+        "target_title": "Code of Practice for Earthing",
+        "relationship_type": "SAFETY_STANDARD",
+        "description": "Substation neutral and body grounding practice."
+      },
+      {
+        "target_is": "IS 10028",
+        "target_title": "Code of Practice for Selection, Installation and Maintenance of Transformers",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Foundation plinth, silica gel breather maintenance, and safety clearances."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-14286",
+    "is_number": "IS 14286:2010",
+    "base_is": "IS 14286",
+    "title": "Terrestrial Photovoltaic (PV) Modules — Design Qualification and Type Approval",
+    "domain": "New and Renewable Energy / Solar Energy (ETD 28)",
+    "category": "SOLAR_SYSTEMS",
+    "scope": "Specifies requirements for design qualification and type approval of terrestrial crystalline silicon PV modules for long-term outdoor climate operation (aligned with IEC 61215:2005).",
+    "status": "CURRENT",
+    "publication_year": 2010,
+    "edition": "First Revision (Aligned with IEC 61215:2005)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2018-05", "summary": "Solar PV Control Order alignment." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "Compulsory Registration Scheme (CRS) under MNRE Solar Photovoltaics Quality Control Order, 2017",
+    "source_name": "Bureau of Indian Standards (BIS CRS Portal)",
+    "source_url": "https://www.crsbis.in/BIS/products.do",
+    "keywords": ["solar module", "solar panel", "photovoltaic", "pv module", "monocrystalline", "polycrystalline", "solar water pump", "almm"],
+    "applicable_conditions": {
+      "product_types": ["solar module", "pv panel", "solar array", "photovoltaic module"],
+      "technology": ["crystalline silicon", "mono PERC", "poly"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS/IEC 61730-1",
+        "target_title": "Photovoltaic (PV) Module Safety Qualification - Part 1: Requirements for Construction",
+        "relationship_type": "SAFETY_STANDARD",
+        "description": "Mechanical integrity, insulation resistance, and electric shock prevention."
+      },
+      {
+        "target_is": "IS/IEC 61730-2",
+        "target_title": "Photovoltaic (PV) Module Safety Qualification - Part 2: Requirements for Testing",
+        "relationship_type": "TEST_METHOD",
+        "description": "Fire test, hail impact test, reverse current overload test, and wet leakage test."
+      },
+      {
+        "target_is": "IS 16221-2",
+        "target_title": "Safety of Power Converters for Use in Photovoltaic Power Systems",
+        "relationship_type": "RELATED_PRODUCT",
+        "description": "Standard for Solar Inverters and Variable Frequency Drives (VFD) coupled to solar panels."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-16221-2",
+    "is_number": "IS 16221 (Part 2):2015",
+    "base_is": "IS 16221 (Part 2)",
+    "title": "Safety of Power Converters for Use in Photovoltaic Power Systems — Part 2: Particular Requirements for Inverters",
+    "domain": "New and Renewable Energy / Solar Energy (ETD 28)",
+    "category": "SOLAR_SYSTEMS",
+    "scope": "Specifies safety requirements for grid-connected, off-grid and solar pump controller inverters converting DC solar power to AC power (Identical with IEC 62109-2:2011).",
+    "status": "CURRENT",
+    "publication_year": 2015,
+    "edition": "First Edition (Identical with IEC 62109-2:2011)",
+    "amendments": [],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "Compulsory Registration Scheme (CRS) under MNRE Solar Inverters Quality Control Order, 2017",
+    "source_name": "Bureau of Indian Standards (BIS CRS Portal)",
+    "source_url": "https://www.crsbis.in/BIS/products.do",
+    "keywords": ["solar inverter", "solar pump controller", "vfd", "power converter", "mppt", "solar drive"],
+    "applicable_conditions": {
+      "product_types": ["solar inverter", "pump drive", "solar controller", "power converter"],
+      "application": ["solar pumping", "rooftop solar", "grid-tied solar"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 16169",
+        "target_title": "Test Procedure of Islanding Prevention Measures for Utility-Interconnected Photovoltaic Inverters",
+        "relationship_type": "TEST_METHOD",
+        "description": "Anti-islanding safety verification procedure."
+      },
+      {
+        "target_is": "IS 14286",
+        "target_title": "Crystalline Silicon Terrestrial PV Modules",
+        "relationship_type": "RELATED_PRODUCT",
+        "description": "Solar PV module standard supplying the inverter."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-269",
+    "is_number": "IS 269:2015",
+    "base_is": "IS 269",
+    "title": "Ordinary Portland Cement — Specification",
+    "domain": "Civil Engineering / Cement and Concrete (CED 02)",
+    "category": "CIVIL_CONSTRUCTION",
+    "scope": "Covers the manufacture, chemical and physical requirements, testing and supply of 33 grade, 43 grade and 53 grade ordinary Portland cement.",
+    "status": "CURRENT",
+    "publication_year": 2015,
+    "edition": "Sixth Revision (Amalgamated IS 8112 43 Grade & IS 12269 53 Grade into IS 269)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2018-09", "summary": "Chloride content limits in reinforced and prestressed concrete." },
+      { "amendment_no": "Amd 2", "date": "2021-04", "summary": "Performance enhancement addition limits." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Cement Quality Control Order, 2003)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-269",
+    "keywords": ["opc", "ordinary portland cement", "43 grade", "53 grade", "cement", "concrete", "compressive strength", "setting time", "soundness"],
+    "applicable_conditions": {
+      "product_types": ["cement", "opc cement", "portland cement"],
+      "grades": ["33 Grade", "43 Grade", "53 Grade"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 4031",
+        "target_title": "Methods of Physical Tests for Hydraulic Cement (Parts 1 to 15)",
+        "relationship_type": "TEST_METHOD",
+        "description": "Standard testing of fineness, setting times, compressive strength, and Le-Chatelier soundness."
+      },
+      {
+        "target_is": "IS 4032",
+        "target_title": "Method of Chemical Analysis of Hydraulic Cement",
+        "relationship_type": "TEST_METHOD",
+        "description": "Standard wet chemical and XRF analysis for insoluble residue, loss on ignition, and silica ratio."
+      },
+      {
+        "target_is": "IS 456",
+        "target_title": "Plain and Reinforced Concrete - Code of Practice",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Structural design, minimum cement content, and water-cement ratio code for RCC construction."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-456",
+    "is_number": "IS 456:2000",
+    "base_is": "IS 456",
+    "title": "Plain and Reinforced Concrete — Code of Practice",
+    "domain": "Civil Engineering / Structural Design (CED 02)",
+    "category": "CIVIL_CONSTRUCTION",
+    "scope": "Deals with general structural use of plain and reinforced concrete in buildings, bridges, foundations, and water retaining structures.",
+    "status": "CURRENT",
+    "publication_year": 2000,
+    "edition": "Fourth Revision (Reaffirmed 2021)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2001-11", "summary": "Characteristic strength definitions." },
+      { "amendment_no": "Amd 3", "date": "2007-08", "summary": "Durability and exposure condition modifications." },
+      { "amendment_no": "Amd 5", "date": "2019-07", "summary": "Manufactured sand (M-Sand) allowance and concrete testing updates." }
+    ],
+    "certification_status": "VOLUNTARY",
+    "certification_scheme": "Voluntary Code of Practice (Mandatory baseline under National Building Code of India)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-456",
+    "keywords": ["rcc", "reinforced concrete", "concrete mix", "m20", "m25", "m30", "curing", "reinforcement", "structural concrete"],
+    "applicable_conditions": {
+      "product_types": ["concrete", "rcc", "structural works", "building foundation"],
+      "concrete_grades": ["M15 to M80"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 516",
+        "target_title": "Hardened Concrete - Methods of Test (Parts 1 to 5)",
+        "relationship_type": "TEST_METHOD",
+        "description": "Cube compressive strength, flexural strength, and non-destructive rebound hammer tests."
+      },
+      {
+        "target_is": "IS 1786",
+        "target_title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement (TMT Rebars)",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Standard for Fe 500D and Fe 550D TMT reinforcement steel bars."
+      },
+      {
+        "target_is": "IS 383",
+        "target_title": "Coarse and Fine Aggregate for Concrete - Specification",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Grading and quality of crushed stone, natural sand, and M-Sand."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-1786",
+    "is_number": "IS 1786:2008",
+    "base_is": "IS 1786",
+    "title": "High Strength Deformed Steel Bars and Wires for Concrete Reinforcement — Specification",
+    "domain": "Metallurgical Engineering / Steel & Iron (CED 54)",
+    "category": "CIVIL_CONSTRUCTION",
+    "scope": "Specifies chemical composition, physical properties, bendability, and proof stress for thermo-mechanically treated (TMT) steel bars for RCC works (Fe 415, Fe 500, Fe 500D, Fe 550, Fe 550D, Fe 600).",
+    "status": "CURRENT",
+    "publication_year": 2008,
+    "edition": "Fourth Revision (Supersedes IS 1139:1966)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2012-05", "summary": "Inclusion of seismic resistant Fe 500D grade." },
+      { "amendment_no": "Amd 3", "date": "2017-03", "summary": "Total elongation at maximum force (AgT) limits." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Steel and Steel Products Quality Control Order, 2020)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-1786",
+    "keywords": ["tmt bar", "steel reinforcement", "fe 500d", "fe 550d", "rebars", "concrete reinforcement", "yield strength"],
+    "applicable_conditions": {
+      "product_types": ["tmt bars", "reinforcement steel", "deformed bars"],
+      "grades": ["Fe 415", "Fe 500", "Fe 500D", "Fe 550", "Fe 550D"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 1608",
+        "target_title": "Metallic Materials - Tensile Testing at Room Temperature",
+        "relationship_type": "TEST_METHOD",
+        "description": "Testing proof stress, ultimate tensile strength, and percentage elongation."
+      },
+      {
+        "target_is": "IS 1599",
+        "target_title": "Metallic Materials - Bend Test",
+        "relationship_type": "TEST_METHOD",
+        "description": "180 degree cold bend and rebend tests across mandrels."
+      },
+      {
+        "target_is": "IS 456",
+        "target_title": "Plain and Reinforced Concrete - Code of Practice",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Design codes for lap lengths, anchorage bond, and curtailment."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-4985",
+    "is_number": "IS 4985:2021",
+    "base_is": "IS 4985",
+    "title": "Unplasticized PVC Pipes for Potable Water Supplies — Specification",
+    "domain": "Chemical & Plastic Products / Piping (CED 50)",
+    "category": "PIPES_AND_FITTINGS",
+    "scope": "Covers requirements for plain and socketed unplasticized polyvinyl chloride (uPVC) pipes for potable water transportation, tube wells and agricultural irrigation.",
+    "status": "CURRENT",
+    "publication_year": 2021,
+    "edition": "Fourth Revision (Supersedes IS 4985:2000 Third Revision)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2023-04", "summary": "Heavy metal release restrictions for potable drinking water safety." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Polyvinyl Chloride Pipes and Fittings Quality Control Order, 2024)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-4985",
+    "keywords": ["upvc pipe", "pvc pipe", "drinking water pipe", "potable water", "plumbing pipe", "irrigation pipe", "class 1", "class 2", "class 3"],
+    "applicable_conditions": {
+      "product_types": ["upvc pipe", "pvc pipe", "potable water pipe"],
+      "pressure_class": ["Class 1 (0.25 MPa)", "Class 2 (0.4 MPa)", "Class 3 (0.6 MPa)", "Class 4 (1.0 MPa)"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 12235",
+        "target_title": "Methods of Test for Unplasticized PVC Pipes for Potable Water Supplies (Parts 1 to 19)",
+        "relationship_type": "TEST_METHOD",
+        "description": "Hydrostatic pressure burst test, opacity test, impact test, and Vicat softening temperature."
+      },
+      {
+        "target_is": "IS 7834",
+        "target_title": "Specification for Injection Moulded PVC Socket Fittings with Solvent Cement Joints for Water Supplies",
+        "relationship_type": "RELATED_PRODUCT",
+        "description": "Standard for elbows, tees, couplers and reducers matching uPVC pipes."
+      },
+      {
+        "target_is": "IS 7634-3",
+        "target_title": "Code of Practice for Plastics Pipes Selection, Handling, Storage and Installation",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Underground trench laying, bedding, pressure testing, and backfilling practice."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-15683",
+    "is_number": "IS 15683:2018",
+    "base_is": "IS 15683",
+    "title": "Portable Fire Extinguishers — Performance and Construction — Specification",
+    "domain": "Civil & Fire Safety / Fire Fighting Equipment (CED 22)",
+    "category": "FIRE_SAFETY",
+    "scope": "Specifies construction, performance, safety devices, and fire rating tests for portable fire extinguishers (ABC Powder, Water, Foam, CO2, Clean Agent).",
+    "status": "CURRENT",
+    "publication_year": 2018,
+    "edition": "First Revision (Supersedes IS 15683:2006)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "2020-07", "summary": "Eco-friendly propellant gas safety and pressure relief valve requirements." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Fire Fighting Equipment Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-15683",
+    "keywords": ["fire extinguisher", "abc powder extinguisher", "co2 extinguisher", "portable fire extinguisher", "fire safety", "fire rating"],
+    "applicable_conditions": {
+      "product_types": ["fire extinguisher", "abc extinguisher", "co2 fire extinguisher"],
+      "extinguishing_media": ["ABC dry powder", "Carbon dioxide", "AFFF foam", "Water"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 1641",
+        "target_title": "Code of Practice for Fire Safety of Buildings - General Principles of Fire Protection",
+        "relationship_type": "SAFETY_STANDARD",
+        "description": "Building occupancy fire load classification and extinguisher placement."
+      },
+      {
+        "target_is": "IS 2190",
+        "target_title": "Selection, Installation and Maintenance of First-Aid Fire Extinguishers - Code of Practice",
+        "relationship_type": "TERMINOLOGY_INSTALLATION",
+        "description": "Installation height, periodic pressure check, hydraulic testing intervals, and maintenance logs."
+      },
+      {
+        "target_is": "IS 4308",
+        "target_title": "Dry Chemical Powder for Fire Fighting (Class B and C Fires) - Specification",
+        "relationship_type": "NORMATIVE_REFERENCE",
+        "description": "Purity, water repellency, and flowability of chemical extinguishant powder."
+      }
+    ]
+  },
+  {
+    "standard_id": "STD-IS-2925",
+    "is_number": "IS 2925:1984",
+    "base_is": "IS 2925",
+    "title": "Specification for Industrial Safety Helmets",
+    "domain": "Personal Safety Equipment / Protective Wear (CHD 08)",
+    "category": "PPE_SAFETY",
+    "scope": "Specifies physical, performance and testing requirements for safety helmets designed to protect the wearer against falling objects and electrical hazards in industrial environments.",
+    "status": "CURRENT",
+    "publication_year": 1984,
+    "edition": "Second Revision (Reaffirmed 2025)",
+    "amendments": [
+      { "amendment_no": "Amd 1", "date": "1990-03", "summary": "Dielectric test voltage criteria." },
+      { "amendment_no": "Amd 2", "date": "2010-06", "summary": "Chinstrap retention test protocol." }
+    ],
+    "certification_status": "MANDATORY_QCO",
+    "certification_scheme": "BIS Scheme-I (Mandatory ISI Mark under Personal Protective Equipment Helmets Quality Control Order, 2023)",
+    "source_name": "Bureau of Indian Standards (BIS Standard Details Portal)",
+    "source_url": "https://www.services.bis.gov.in/php/BIS_2.0/bisconnect/knowyourstandards/indian_standards/isdetails/IS-2925",
+    "keywords": ["safety helmet", "industrial helmet", "hard hat", "ppe", "head protection", "electrical safety helmet", "impact protection"],
+    "applicable_conditions": {
+      "product_types": ["safety helmet", "industrial helmet", "hard hat"],
+      "application": ["construction", "mining", "manufacturing", "electrical utilities"]
+    },
+    "relationships": [
+      {
+        "target_is": "IS 1608",
+        "target_title": "Shock Absorption and Penetration Resistance Test Methods",
+        "relationship_type": "TEST_METHOD",
+        "description": "Drop impact force measurement (5 kg striker) and conical penetrometer test."
+      },
+      {
+        "target_is": "IS 9473",
+        "target_title": "Respiratory Protective Devices - Filtering Half Masks to Protect Against Particles",
+        "relationship_type": "RELATED_PRODUCT",
+        "description": "Standard for complementary N95/FFP2 industrial particulate respirators."
+      },
+      {
+        "target_is": "IS 15841",
+        "target_title": "Personal Protective Equipment - Safety Footwear",
+        "relationship_type": "RELATED_PRODUCT",
+        "description": "Standard for safety shoes with steel/composite toe caps."
+      }
+    ]
+  }
+]
